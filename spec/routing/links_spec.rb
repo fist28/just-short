@@ -4,4 +4,11 @@ RSpec.describe 'Routes for LinksController' do
   it 'routes GET /links/new run LinksController and #new action' do
     expect(get('/links/new')).to route_to("links#new")
   end
+
+  it 'routes GET /links/:id run LinksController and #show action' do
+    expect(get('/links/123')).to route_to(
+      controller: 'links',
+      action: 'show',
+      id: '123')
+  end
 end

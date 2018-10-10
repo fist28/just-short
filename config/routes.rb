@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :links, only: :new
+  resources :links, only: %i(new show)
 end
