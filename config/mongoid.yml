@@ -1,0 +1,21 @@
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
+development:
+  clients:
+    default:
+      database: just_short_development
+      hosts:
+        - mongodb:27017
+      options:
+test:
+  clients:
+    default:
+      database: just_short_test
+      hosts:
+        - mongodb:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
