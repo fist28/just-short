@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Link do
-  let(:link) { Link.create(destination: 'https://example.com') }
+  let(:link) { create(:link) }
 
   it 'link has created_at field' do
     expect(link.created_at).to be

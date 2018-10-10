@@ -10,7 +10,7 @@ RSpec.describe LinksController do
   end
 
   describe 'GET #show' do
-    let(:link) { Link.create }
+    let(:link) { create(:link) }
     it 'returns http success status' do
       get :show, params: { id: link.id }
       expect(response).to have_http_status(:success)
