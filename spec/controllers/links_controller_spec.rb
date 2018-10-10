@@ -59,4 +59,28 @@ RSpec.describe LinksController do
 
     end
   end
+
+  describe 'GET #redirect' do
+    context 'correct link id' do
+      let(:link) { create(:link) }
+
+      it 'returns http success status' do
+        get :redirect, params: { id: link.id }
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'returns http success status' do
+        get :redirect, params: { id: link.id }
+        expect(response).to redirect_to(link.destination)
+      end
+    end
+
+    context 'incorrect link id' do
+      it 'returns http not found status' do
+        get :redirect, params: { id: '12345678' }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+  end
 end

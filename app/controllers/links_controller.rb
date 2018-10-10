@@ -18,6 +18,10 @@ class LinksController < ApplicationController
     end
   end
 
+  def redirect
+    redirect_to Link.find(params[:id]).destination
+  end
+
   private
 
   def create_params
