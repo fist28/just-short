@@ -11,4 +11,8 @@ RSpec.describe 'Routes for LinksController' do
       action: 'show',
       id: '123')
   end
+
+  it 'routes POST /links run LinksController and #create action' do
+    expect(post('/links')).to route_to("links#create")
+  end
 end
