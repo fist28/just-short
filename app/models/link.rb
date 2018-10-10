@@ -5,6 +5,8 @@ class Link
   field :destination, type: String
   field :_id, type: String, default: -> { Link.generate_id }
 
+  validates :destination, format: { with: URI.regexp }
+
   private
 
   def self.generate_id

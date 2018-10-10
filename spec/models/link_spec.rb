@@ -31,4 +31,32 @@ RSpec.describe Link do
       expect(Link.id_present?('12345678')).to be_falsey
     end
   end
+
+  context 'validation' do
+    context 'destination' do
+      it 'can not be blank' do
+        link = Link.new(destination: '')
+        link.valid?
+        expect(link.errors['destination']).to include('is invalid')
+      end
+
+      it 'can not be without protocol' do
+        link = Link.new(destination: 'example.com')
+        link.valid?
+        expect(link.errors['destination']).to include('is invalid')
+      end
+
+      it 'can be with http protocol' do
+        link = Link.new(destination: 'http://example.com')
+        link.valid?
+        expect(link.errors['destination']).not_to include('is invalid')
+      end
+
+      it 'can be with https protocol' do
+        link = Link.new(destination: 'https://example.com')
+        link.valid?
+        expect(link.errors['destination']).not_to include('is invalid')
+      end
+    end
+  end
 end
