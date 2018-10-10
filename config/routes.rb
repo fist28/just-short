@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/:id', to: 'application#redirect'
+  get '/:id', to: 'links#redirect'
   resources :links, only: %i(new show create)
 end
