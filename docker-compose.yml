@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./:/app
+      - bundle:/bundle
+    working_dir: /app
+    command: puma
+    ports:
+      - 3001:3000
+    depends_on:
+      - mongodb
+  guard:
+    build:
+      context: .
+    environment:
+      RAILS_ENV: test
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+      - bundle:/bundle
+    command: bundle exec guard --no-bundler-warning --no-interactions
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
+    driver: local
+  bundle:
+    driver: local
