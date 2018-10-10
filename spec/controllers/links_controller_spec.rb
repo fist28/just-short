@@ -18,18 +18,45 @@ RSpec.describe LinksController do
   end
 
   describe 'POST #create' do
-    before do
-      post :create, params: { link: { destination: 'example.com' }}
+    context 'correct link' do
+      before do
+        post :create, params: { link: attributes_for(:link)}
+      end
+
+      it 'returns http redirect status' do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'redirect to created link' do
+        expect(response).to redirect_to(Link.last)
+      end
+
+      it 'create a new Link' do
+        expect{
+          post :create, params: { link: attributes_for(:link)}
+          }.to change(Link,:count).by(1)
+      end
     end
 
-    it 'returns http redirect status' do
-      expect(response).to have_http_status(:redirect)
-    end
-
-    it 'create a new Link' do
-      expect{
+    context 'incorrect link' do
+      before do
         post :create, params: { link: { destination: 'example.com' }}
-        }.to change(Link,:count).by(1)
+      end
+
+      it 'returns http success status' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'render new' do
+        expect(response).to render_template(:new)
+      end
+
+      it 'not create a Link' do
+        expect{
+          post :create, params: { link: { destination: 'example.com' }}
+          }.to change(Link,:count).by(0)
+      end
+
     end
   end
 end

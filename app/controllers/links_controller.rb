@@ -6,7 +6,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new
+    @link = Link.new(create_params)
 
     respond_to do |format|
       if @link.save
@@ -15,5 +15,11 @@ class LinksController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  private
+
+  def create_params
+    params.require(:link).permit(:destination)
   end
 end
