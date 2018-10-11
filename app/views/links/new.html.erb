@@ -1,7 +1,20 @@
-<h1>Links#new</h1>
-<p>Find me in app/views/links/new.html.erb</p>
-<%= form_for @link do |f| %>
-  <%= f.label :destination %>
-  <%= f.text_field :destination %>
-  <%= f.submit %>
+<%= form_for @link, html: { class: 'form-signin' } do |f| %>
+  <h1><%= fa_icon 'hand-scissors-o', class: 'mb-4' %></h1>
+  <h1 class="h1 mb-5 font-weight-normal"><small>Just</small>Short.me</h1>
+  <% if @link.errors.any? %>
+    <div class="alert alert-warning" role="alert">
+      <% @link.errors.full_messages.each do |error| %>
+        <div><%= error %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.label :destination, class: 'sr-only', for: 'aa'%>
+  <div class="input-group mb-3">
+    <%= f.text_field :destination, class: 'form-control', placeholder: 'http://example.com/lorem_ipsum?foo=bar', required: true, autofocus: true, type: :url %>
+    <div class="input-group-append">
+      <%= button_tag type: :submit, class: 'btn btn-primary' do %>
+        <%= fa_icon 'scissors' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
