@@ -1,0 +1,8 @@
+pl:
+  mongoid:
+    attributes:
+      link:
+        destination: 'Adres docelowy'
+  errors:
+    messages:
+      invalid: "jest nieprawidłowy"
