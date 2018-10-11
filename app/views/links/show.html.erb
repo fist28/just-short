@@ -1,1 +1,24 @@
-<h1>Links#show</h1>
+<div class="content jumbotron">
+  <div class="container">
+    <h1 class="display-4">
+      <%= t(:show_success) %>
+    </h1>
+    <p class="lead">
+      <span id="short_link"><%= redirect_url(id: @link.id) %></span>
+        <%= fa_icon 'copy',  onclick: 'copyLink()', class: 'text-primary' %>
+      <span id="message" class="text-muted font-weight-light" style="display: none">
+        <%= t(:copied) %>
+      </span>
+    </p>
+    <p>
+      <%= @link.destination %>
+      <%= link_to @link.destination, target: '_blank' do %>
+         <%= fa_icon 'external-link' %>
+      <% end %>
+    </p>
+
+    <div>
+      <%= link_to t(:short_new), new_link_path , class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

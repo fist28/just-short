@@ -5,4 +5,7 @@ pl:
         destination: 'Adres docelowy'
   errors:
     messages:
-      invalid: "jest nieprawidłowy"
+      invalid: 'jest nieprawidłowy'
+  show_success: 'Twój skrócony adres'
+  copied: 'Skopiowano'
+  short_new: 'Skróć kolejny!'
