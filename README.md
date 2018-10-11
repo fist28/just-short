@@ -1,24 +1,12 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Stack
+- Ruby on Rails 5.2.1
+- Ruby 2.5.1
+- MongoDB 4.0.3
+# Development
+## Docker
+For launch app locally you should type following commands in the application directory:
+```bash
+docker-compose build
+docker-compose up -d app
+```
+Next you can open browser and type address http://localhost:3001
